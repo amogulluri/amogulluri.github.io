@@ -5,25 +5,248 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Akilesh Mogulluri | Salesforce Solution & Technical Architect</title>
   <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #1f2d3d;
+      --muted: #5a6b7e;
+      --accent: #0070d2;
+      --accent-soft: rgba(0, 112, 210, 0.08);
+      --border: #e3e8ef;
+      --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+    [data-theme="dark"] {
+      --bg: #0f1729;
+      --card: #16213e;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #4ca5f0;
+      --accent-soft: rgba(76, 165, 240, 0.12);
+      --border: #243049;
+      --shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(180%) blur(10px);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-brand {
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      padding: 2rem;
+      font-size: 0.95rem;
+      padding: 0;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .container {
-      background: white;
-      max-width: 860px;
-      width: 100%;
+    .theme-toggle:hover { border-color: var(--accent); transform: rotate(15deg); }
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    section.visible { opacity: 1; transform: none; }
+    h1 {
+      color: var(--accent);
+      margin: 0 0 0.35rem;
+      font-size: 2rem;
+    }
+    h2 {
+      color: var(--accent);
+      margin: 0 0 1rem;
+      font-size: 1.25rem;
+    }
+    .tagline { color: var(--muted); margin: 0 0 1.25rem; font-size: 1.05rem; }
+    p { line-height: 1.65; color: var(--text); margin: 0 0 1rem; }
+    p:last-child { margin-bottom: 0; }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .hero-meta a, .hero-meta button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .hero-meta a:hover, .hero-meta button:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .stat {
+      text-align: center;
+      padding: 1rem;
+      border: 1px solid var(--border);
       border-radius: 8px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      padding: 2rem;
+      background: var(--accent-soft);
     }
-    h1 { color: #0070d2; margin-bottom: 0.25rem; }
-    .tagline { color: #555; margin: 0; }
-    h2 { color: #0070d2; margin-top: 2rem; font-size: 1.25rem; }
-    p { line-height: 1.6; color: #2c3e50; }
+    .stat-num {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+    .stat-label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .timeline { display: flex; flex-direction: column; gap: 1rem; }
+    .role {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg);
+      transition: border-color 0.2s;
+    }
+    .role:hover { border-color: var(--accent); }
+    .role-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      user-select: none;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      font-family: inherit;
+    }
+    .role-header:hover { background: var(--accent-soft); }
+    .role-title {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .role-company { color: var(--accent); font-weight: 500; }
+    .role-dates {
+      color: var(--muted);
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .role-toggle {
+      color: var(--muted);
+      transition: transform 0.25s ease;
+      font-size: 0.85rem;
+      margin-left: auto;
+    }
+    .role[open] .role-toggle { transform: rotate(180deg); }
+    .role-body {
+      padding: 0 1.25rem 1.25rem;
+      color: var(--text);
+      display: none;
+    }
+    .role[open] .role-body { display: block; }
+    .role-body h4 {
+      color: var(--accent);
+      margin: 1rem 0 0.4rem;
+      font-size: 0.95rem;
+    }
+    .role-body h4:first-child { margin-top: 0; }
+    .role-body ul { padding-left: 1.2rem; margin: 0; }
+    .role-body li { margin-bottom: 0.4rem; line-height: 1.55; }
+    .skills { display: grid; gap: 1rem; }
+    .skill-group { }
+    .skill-group h4 {
+      margin: 0 0 0.5rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip {
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .chip:hover { border-color: var(--accent); transform: translateY(-1px); }
     .cert-grid {
       list-style: none;
       padding: 0;
@@ -33,38 +256,316 @@
       gap: 0.5rem;
     }
     .cert-grid li {
-      background: #f4f6f9;
-      border-left: 3px solid #0070d2;
-      padding: 0.6rem 0.85rem;
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      padding: 0.65rem 0.9rem;
       border-radius: 4px;
-      color: #2c3e50;
-      font-size: 0.95rem;
+      color: var(--text);
+      font-size: 0.92rem;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .cert-grid li:hover { transform: translateX(3px); }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding: 2rem 1rem;
+    }
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--text);
+      color: var(--card);
+      padding: 0.65rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 100;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    @media (max-width: 600px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      h1 { font-size: 1.6rem; }
+      section { padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Akilesh Mogulluri</h1>
-    <p class="tagline">Salesforce Solution & Technical Architect — Sydney, AU</p>
+  <nav>
+    <div class="nav-inner">
+      <a href="#top" class="nav-brand">Akilesh Mogulluri</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      </div>
+    </div>
+  </nav>
 
-    <h2>About</h2>
-    <p>Seasoned Salesforce Solution & Technical Architect with 10+ years of hands-on platform experience, including deep expertise in solution design, integration architecture, and technical leadership across enterprise environments. Brings a rare combination of vendor-side knowledge — a decade inside Salesforce's Customer Success Group — and client-facing delivery experience, with a track record of designing scalable, best-practice solutions that drive measurable business outcomes.</p>
-    <p>Expert across the full Salesforce platform including Service Cloud, Sales Cloud, Agentforce, Data Cloud, Experience Cloud, Field Service, and Digital Engagement. Holds 10 active Salesforce certifications. Known for translating complex technical requirements into clear architecture decisions, mentoring development teams, governing delivery quality, and aligning solutions to long-term business strategy.</p>
+  <main>
+    <section id="top">
+      <h1>Akilesh Mogulluri</h1>
+      <p class="tagline">Salesforce Solution &amp; Technical Architect — Sydney, AU</p>
+      <div class="hero-meta">
+        <a href="mailto:Akilesh.Mogulluri@outlook.com">✉️ Email</a>
+        <button data-copy="0433 57 5577">📱 0433 57 5577</button>
+        <a href="https://www.linkedin.com/in/akilesh-mogulluri" target="_blank" rel="noopener">in LinkedIn</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Years on Platform</span></div>
+        <div class="stat"><span class="stat-num">11</span><span class="stat-label">Active Certs</span></div>
+        <div class="stat"><span class="stat-num">APAC</span><span class="stat-label">+ Global Reach</span></div>
+        <div class="stat"><span class="stat-num">Enterprise</span><span class="stat-label">Customer Focus</span></div>
+      </div>
+    </section>
 
-    <h2>Certifications</h2>
-    <ul class="cert-grid">
-      <li>Salesforce Certified Platform Data Architect</li>
-      <li>Salesforce Certified Data 360 Consultant</li>
-      <li>Salesforce Certified Service Cloud Consultant</li>
-      <li>Salesforce Certified Platform Developer II</li>
-      <li>Salesforce Certified Agentforce Specialist</li>
-      <li>Salesforce Certified AI Associate</li>
-      <li>Salesforce Certified Platform Developer</li>
-      <li>Salesforce Certified Platform App Builder</li>
-      <li>Salesforce Certified Platform Administrator II</li>
-      <li>Salesforce Certified Platform Administrator</li>
-      <li>TSIA Service Ready for Technical Support – Level I</li>
-    </ul>
-  </div>
+    <section id="about">
+      <h2>About</h2>
+      <p>Seasoned Salesforce Solution &amp; Technical Architect with 10+ years of hands-on platform experience, including deep expertise in solution design, integration architecture, and technical leadership across enterprise environments. Brings a rare combination of vendor-side knowledge — a decade inside Salesforce's Customer Success Group — and client-facing delivery experience, with a track record of designing scalable, best-practice solutions that drive measurable business outcomes.</p>
+      <p>Expert across the full Salesforce platform including Service Cloud, Sales Cloud, Agentforce, Data Cloud, Experience Cloud, Field Service, and Digital Engagement. Holds 10 active Salesforce certifications. Known for translating complex technical requirements into clear architecture decisions, mentoring development teams, governing delivery quality, and aligning solutions to long-term business strategy.</p>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="role">
+          <button class="role-header" type="button" aria-expanded="false">
+            <span>
+              <span class="role-title">Principal Technical Support Engineer — Technical Lead</span><br/>
+              <span class="role-company">Salesforce, Sydney</span>
+            </span>
+            <span class="role-dates">Aug 2015 – Present</span>
+            <span class="role-toggle">▾</span>
+          </button>
+          <div class="role-body">
+            <p>Senior architecture advisory and technical leadership role within Salesforce's Customer Success Group, acting as the primary escalation point and solution authority for enterprise customers globally — with deep engagement across APAC and work spanning North America, EMEA, and beyond. Partners with organisations across financial services, telecommunications, retail, healthcare, and public sector to architect Service Cloud, Sales Cloud, Experience Cloud, Field Service, and Agentforce solutions.</p>
+            <h4>Solution Architecture &amp; Design</h4>
+            <ul>
+              <li>Help enterprise customers design scalable, best-practice solutions across Service Cloud, Field Service, Appointment Assistant, Digital Engagement, Experience Cloud, and Agentforce — translating complex requirements into robust technical architectures.</li>
+              <li>Conduct in-depth architecture reviews, identifying design inefficiencies, scalability risks, and governance gaps, and deliver actionable remediation roadmaps.</li>
+              <li>Evaluate and pilot new platform features ahead of GA — including pre-launch Agentforce work ahead of Dreamforce 2024 — producing implementation guidance for enterprise adoption.</li>
+              <li>Advise on integration strategy across REST/SOAP APIs, Platform Events, Streaming Events, and third-party systems for reliable, performant data flows.</li>
+            </ul>
+            <h4>Technical Leadership &amp; Governance</h4>
+            <ul>
+              <li>Lead cross-functional teams through critical incident resolution and drive root-cause analysis and architectural remediation to prevent recurrence.</li>
+              <li>Established governance frameworks and best-practice standards adopted across the Service Cloud APAC team.</li>
+              <li>Conduct code and performance reviews of customer Apex, LWC, and integration implementations with specific, actionable feedback.</li>
+              <li>Developed an aged-case review framework that reduced Field Service backlog by ~40% — a structural fix, not a tactical workaround.</li>
+            </ul>
+            <h4>Mentoring &amp; Enablement</h4>
+            <ul>
+              <li>Mentor junior and senior engineers across technical depth and customer engagement skills.</li>
+              <li>Lead Agentforce and Field Service working groups across APAC, delivering enablement sessions for Premier and Signature teams and producing reusable architecture guides and demo assets.</li>
+              <li>Author knowledge base articles, training materials, and solution playbooks that scale architectural guidance across the customer base.</li>
+            </ul>
+            <h4>Pre-Sales &amp; Discovery Support</h4>
+            <ul>
+              <li>Partner with Customer Success and Account teams on strategic accounts — running structured discovery, shaping solution approaches, and presenting recommendations to C-level and technical stakeholders.</li>
+              <li>Demonstrate new platform capabilities directly to enterprise customers, framing technical features as business outcomes.</li>
+              <li>Contribute to at-risk account recovery strategies through targeted technical and adoption remediation plans.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="role">
+          <button class="role-header" type="button" aria-expanded="false">
+            <span>
+              <span class="role-title">Consultant — Subject Matter Expert</span><br/>
+              <span class="role-company">Macquarie Group Limited, Sydney</span>
+            </span>
+            <span class="role-dates">Jan 2013 – Aug 2015</span>
+            <span class="role-toggle">▾</span>
+          </button>
+          <div class="role-body">
+            <p>Client-facing role embedded within Macquarie Bank's Banking and Financial Services (BFS) technology team. SME and developer for the bank's enterprise customer correspondence platform, owning solution design, integration architecture, and delivery governance across a complex, regulated environment.</p>
+            <h4>Integration Architecture &amp; Solution Delivery</h4>
+            <ul>
+              <li>Architected cross-platform integrations connecting the correspondence platform with enterprise BPM workflows, middleware, and third-party systems including Pega, webMethods, PeopleSoft, and ExactTarget — using JMS and web services.</li>
+              <li>Provided architectural consulting for new system implementations — defining technical boundaries, validating approaches through code review, and ensuring solutions met banking standards.</li>
+              <li>Managed end-to-end ALM activities from environment setup and team onboarding through to release planning and production deployment.</li>
+            </ul>
+            <h4>Performance, Resilience &amp; Governance</h4>
+            <ul>
+              <li>Planned and executed performance tests, using results to negotiate SLAs and inform capacity planning decisions.</li>
+              <li>Developed business continuity (BCP) strategies and conducted DR tests, securing operational resilience for business-critical correspondence services.</li>
+              <li>Led incident response for production issues — RCA, cross-functional coordination, and structural fixes to prevent recurrence.</li>
+            </ul>
+            <h4>Stakeholder Engagement &amp; Requirements</h4>
+            <ul>
+              <li>Engaged diverse business and technology stakeholders through structured presentations, technical reporting, and requirements definition.</li>
+              <li>Oversaw SIT/UAT QA processes, validating that delivered solutions met functional requirements and performance standards.</li>
+              <li>Built complex correspondence templates and custom solutions in Java, JavaScript, SQL, and XML — maintaining engineering credibility while operating at an architectural level.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill-group">
+          <h4>Salesforce Platform</h4>
+          <div class="chips">
+            <span class="chip">Service Cloud</span>
+            <span class="chip">Sales Cloud</span>
+            <span class="chip">Field Service</span>
+            <span class="chip">Appointment Assistant</span>
+            <span class="chip">Digital Engagement</span>
+            <span class="chip">Agentforce</span>
+            <span class="chip">Experience Cloud</span>
+            <span class="chip">Data Cloud</span>
+            <span class="chip">Einstein AI</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Development</h4>
+          <div class="chips">
+            <span class="chip">Apex</span>
+            <span class="chip">SOQL / SOSL</span>
+            <span class="chip">Lightning Web Components</span>
+            <span class="chip">Aura</span>
+            <span class="chip">Visualforce</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Java</span>
+            <span class="chip">XML / XSD / XSLT</span>
+            <span class="chip">SQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Integration &amp; APIs</h4>
+          <div class="chips">
+            <span class="chip">REST / SOAP APIs</span>
+            <span class="chip">Platform Events</span>
+            <span class="chip">Streaming Events</span>
+            <span class="chip">Web Services</span>
+            <span class="chip">SSO / Authentication</span>
+            <span class="chip">JMS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>DevOps &amp; ALM</h4>
+          <div class="chips">
+            <span class="chip">Salesforce DX</span>
+            <span class="chip">DevOps Center</span>
+            <span class="chip">Change Sets</span>
+            <span class="chip">Metadata / Tooling API</span>
+            <span class="chip">Git</span>
+            <span class="chip">CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Databases &amp; Tools</h4>
+          <div class="chips">
+            <span class="chip">MySQL</span>
+            <span class="chip">Oracle DB</span>
+            <span class="chip">Splunk</span>
+            <span class="chip">JIRA</span>
+            <span class="chip">Confluence</span>
+            <span class="chip">Postman</span>
+            <span class="chip">SoapUI</span>
+            <span class="chip">Data Loader</span>
+            <span class="chip">Workbench</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <ul class="cert-grid">
+        <li>Salesforce Certified Platform Data Architect</li>
+        <li>Salesforce Certified Data 360 Consultant</li>
+        <li>Salesforce Certified Service Cloud Consultant</li>
+        <li>Salesforce Certified Platform Developer II</li>
+        <li>Salesforce Certified Agentforce Specialist</li>
+        <li>Salesforce Certified AI Associate</li>
+        <li>Salesforce Certified Platform Developer</li>
+        <li>Salesforce Certified Platform App Builder</li>
+        <li>Salesforce Certified Platform Administrator II</li>
+        <li>Salesforce Certified Platform Administrator</li>
+        <li>TSIA Service Ready for Technical Support – Level I</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Open to conversations about partner-side architecture, solution design, and technical leadership engagements.</p>
+      <div class="hero-meta">
+        <a href="mailto:Akilesh.Mogulluri@outlook.com">✉️ Akilesh.Mogulluri@outlook.com</a>
+        <button data-copy="0433 57 5577">📱 0433 57 5577</button>
+        <a href="https://www.linkedin.com/in/akilesh-mogulluri" target="_blank" rel="noopener">in LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Sydney, NSW · Australia</footer>
+
+  <div class="toast" id="toast">Copied to clipboard</div>
+
+  <script>
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    if (stored) root.setAttribute('data-theme', stored);
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) root.setAttribute('data-theme', 'dark');
+
+    const toggle = document.getElementById('themeToggle');
+    const updateToggleIcon = () => {
+      toggle.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+    };
+    updateToggleIcon();
+    toggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateToggleIcon();
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('section').forEach((s) => observer.observe(s));
+
+    document.querySelectorAll('.role-header').forEach((header) => {
+      header.addEventListener('click', () => {
+        const role = header.parentElement;
+        const open = role.hasAttribute('open');
+        if (open) {
+          role.removeAttribute('open');
+          header.setAttribute('aria-expanded', 'false');
+        } else {
+          role.setAttribute('open', '');
+          header.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    document.querySelectorAll('[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.copy);
+          toast.textContent = 'Copied: ' + btn.dataset.copy;
+          toast.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+        } catch (e) {}
+      });
+    });
+  </script>
 </body>
 </html>
