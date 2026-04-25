@@ -271,22 +271,6 @@
       font-size: 0.82rem;
       padding: 2rem 1rem;
     }
-    .toast {
-      position: fixed;
-      bottom: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: var(--text);
-      color: var(--card);
-      padding: 0.65rem 1.1rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s, transform 0.25s;
-      z-index: 100;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     @media (max-width: 600px) {
       .nav-links a:not(.nav-cta) { display: none; }
       h1 { font-size: 1.6rem; }
@@ -314,9 +298,8 @@
       <h1>Akilesh Mogulluri</h1>
       <p class="tagline">Salesforce Solution &amp; Technical Architect — Sydney, AU</p>
       <div class="hero-meta">
-        <a href="mailto:Akilesh.Mogulluri@outlook.com">✉️ Email</a>
-        <button data-copy="0433 57 5577">📱 0433 57 5577</button>
-        <a href="https://www.linkedin.com/in/akilesh-mogulluri" target="_blank" rel="noopener">in LinkedIn</a>
+        <a href="mailto:Akilesh.Mogulluri@outlook.com">✉️ Contact Me</a>
+        <a href="https://www.linkedin.com/in/akilesh-mogulluri" target="_blank" rel="noopener">in Check LinkedIn Profile</a>
       </div>
       <div class="stats">
         <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Years on Platform</span></div>
@@ -500,16 +483,13 @@
       <h2>Contact</h2>
       <p>Open to conversations about partner-side architecture, solution design, and technical leadership engagements.</p>
       <div class="hero-meta">
-        <a href="mailto:Akilesh.Mogulluri@outlook.com">✉️ Akilesh.Mogulluri@outlook.com</a>
-        <button data-copy="0433 57 5577">📱 0433 57 5577</button>
-        <a href="https://www.linkedin.com/in/akilesh-mogulluri" target="_blank" rel="noopener">in LinkedIn</a>
+        <a href="mailto:Akilesh.Mogulluri@outlook.com">✉️ Contact Me</a>
+        <a href="https://www.linkedin.com/in/akilesh-mogulluri" target="_blank" rel="noopener">in Check LinkedIn Profile</a>
       </div>
     </section>
   </main>
 
   <footer>Sydney, NSW · Australia</footer>
-
-  <div class="toast" id="toast">Copied to clipboard</div>
 
   <script>
     const root = document.documentElement;
@@ -550,20 +530,6 @@
           role.setAttribute('open', '');
           header.setAttribute('aria-expanded', 'true');
         }
-      });
-    });
-
-    const toast = document.getElementById('toast');
-    let toastTimer;
-    document.querySelectorAll('[data-copy]').forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(btn.dataset.copy);
-          toast.textContent = 'Copied: ' + btn.dataset.copy;
-          toast.classList.add('show');
-          clearTimeout(toastTimer);
-          toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
-        } catch (e) {}
       });
     });
   </script>
