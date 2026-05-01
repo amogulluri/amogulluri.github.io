@@ -211,17 +211,20 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: #ffffff;
-      letter-spacing: -0.02em;
       flex-shrink: 0;
-      box-shadow: 0 1px 3px rgba(3, 45, 96, 0.18);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 6px;
+      box-shadow: 0 1px 3px rgba(3, 45, 96, 0.12);
       transition: transform 0.2s ease;
     }
+    .role-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
     .role:hover .role-logo { transform: scale(1.05); }
-    .role-logo--salesforce { background: linear-gradient(135deg, #00a1e0 0%, #0176d3 100%); }
-    .role-logo--macquarie { background: linear-gradient(135deg, #221f20 0%, #4a4548 100%); }
     .role-title {
       font-weight: 600;
       color: var(--text);
@@ -345,7 +348,7 @@
         <div class="role">
           <button class="role-header" type="button" aria-expanded="false">
             <span class="role-info">
-              <span class="role-logo role-logo--salesforce" aria-hidden="true">S</span>
+              <span class="role-logo" aria-hidden="true"><img src="/assets/logos/salesforce.svg" alt=""/></span>
               <span>
                 <span class="role-title">Principal Swarm Lead | Salesforce Architecture &amp; Technical Lead</span><br/>
                 <span class="role-company">Salesforce, Sydney</span>
@@ -362,7 +365,7 @@
         <div class="role">
           <button class="role-header" type="button" aria-expanded="false">
             <span class="role-info">
-              <span class="role-logo role-logo--macquarie" aria-hidden="true">M</span>
+              <span class="role-logo" aria-hidden="true"><img src="/assets/logos/macquarie.svg" alt=""/></span>
               <span>
                 <span class="role-title">Consultant — Subject Matter Expert</span><br/>
                 <span class="role-company">Macquarie Group Limited, Sydney</span>
