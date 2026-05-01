@@ -184,7 +184,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       gap: 0.5rem;
       padding: 1rem 1.25rem;
       cursor: pointer;
@@ -197,6 +197,31 @@
       font-family: inherit;
     }
     .role-header:hover { background: var(--accent-soft); }
+    .role-info {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .role-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(3, 45, 96, 0.18);
+      transition: transform 0.2s ease;
+    }
+    .role:hover .role-logo { transform: scale(1.05); }
+    .role-logo--salesforce { background: linear-gradient(135deg, #00a1e0 0%, #0176d3 100%); }
+    .role-logo--macquarie { background: linear-gradient(135deg, #221f20 0%, #4a4548 100%); }
     .role-title {
       font-weight: 600;
       color: var(--text);
@@ -319,9 +344,12 @@
       <div class="timeline">
         <div class="role">
           <button class="role-header" type="button" aria-expanded="false">
-            <span>
-              <span class="role-title">Principal Swarm Lead | Salesforce Architecture &amp; Technical Lead</span><br/>
-              <span class="role-company">Salesforce, Sydney</span>
+            <span class="role-info">
+              <span class="role-logo role-logo--salesforce" aria-hidden="true">S</span>
+              <span>
+                <span class="role-title">Principal Swarm Lead | Salesforce Architecture &amp; Technical Lead</span><br/>
+                <span class="role-company">Salesforce, Sydney</span>
+              </span>
             </span>
             <span class="role-dates">Aug 2015 – Present</span>
             <span class="role-toggle">▾</span>
@@ -333,9 +361,12 @@
 
         <div class="role">
           <button class="role-header" type="button" aria-expanded="false">
-            <span>
-              <span class="role-title">Consultant — Subject Matter Expert</span><br/>
-              <span class="role-company">Macquarie Group Limited, Sydney</span>
+            <span class="role-info">
+              <span class="role-logo role-logo--macquarie" aria-hidden="true">M</span>
+              <span>
+                <span class="role-title">Consultant — Subject Matter Expert</span><br/>
+                <span class="role-company">Macquarie Group Limited, Sydney</span>
+              </span>
             </span>
             <span class="role-dates">Jan 2013 – Aug 2015</span>
             <span class="role-toggle">▾</span>
